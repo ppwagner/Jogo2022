@@ -27,3 +27,19 @@ shape = SubResource( 1 )
 position = Vector2( -0.999985, -2 )
 scale = Vector2( 1.96875, 2.0625 )
 frames = SubResource( 2 )
+
+[node name="Rain_shoot1" type="Position2D" parent="."]
+position = Vector2( -449, -268 )
+
+[node name="Rain_shoot2" type="Position2D" parent="."]
+position = Vector2( -179, -268 )
+
+[node name="Rain_shoot3" type="Position2D" parent="."]
+position = Vector2( 164, -267 )
+
+[node name="Rain_shoot4" type="Position2D" parent="."]
+position = Vector2( 453, -267 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
