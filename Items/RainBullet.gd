@@ -1,6 +1,6 @@
 extends Area2D
 
-export (int) var speed = 10
+export (int) var speed = 5
 var direction = Vector2.ZERO
 var who = null
 
@@ -23,11 +23,9 @@ func _on_Area2D_body_entered(body: Node):
 		if body.has_method("took_shoot"):
 			body.took_shoot()
 
-		self.queue_free()
-
-
-func _on_Area2D_area_entered(area: Area2D):
-	if who != area.who:
-		area.queue_free()
 		queue_free()
 
+
+#func _on_Area2D_area_entered(area):
+#	area.queue_free()
+#	queue_free()

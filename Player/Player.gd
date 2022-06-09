@@ -1,7 +1,8 @@
 extends KinematicBody2D
 
-signal player_shooted(bullet, position, direction)
+signal player_shooted(bullet, position, direction, name)
 
+var hp = 3
 export var run_speed = 350
 export var jump_speed = -1000
 export var gravity = 2500
@@ -54,7 +55,13 @@ func get_input_side():
 func _unhandled_input(event):
 	if event.is_action_pressed("shoot"):
 		shoot()
-	
+
+
+func took_shoot():
+	hp -= 1
+	if hp == 0:
+		queue_free()
+
 
 func shoot():
 	var bullet_instance = Bullet.instance()
@@ -63,7 +70,7 @@ func shoot():
 	var alvo_mouse = get_global_mouse_position()
 	var direcao_mouse = saida_do_tiro.global_position.direction_to(alvo_mouse).normalized()
 	# bullet_instance.set_direction(direcao_mouse)
-	emit_signal("player_shooted", bullet_instance, saida_do_tiro.global_position, direcao_mouse)
+	emit_signal("player_shooted", bullet_instance, saida_do_tiro.global_position, direcao_mouse, self)
 	
 func _physics_process(delta):
 	velocity.y += gravity * delta

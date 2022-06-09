@@ -18,3 +18,4 @@ position = Vector2( -2, 0.5 )
 shape = SubResource( 1 )
 
 [node name="SaidaTiro" type="Position2D" parent="."]
+position = Vector2( -1, 4 )
