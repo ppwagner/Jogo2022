@@ -1,9 +1,23 @@
 extends CanvasLayer
 
 onready var scoreLabel := $ScoreLabel
-onready var score := 0
+onready var hpLabel := $gremio
 
-func updateScore() -> void:	
+onready var score := 0
+onready var hp := 0
+
+func updateScore() -> void:
 	score += 1
 	scoreLabel.text = "Score: " + str(score)
-	
+
+
+func setHP(new_hp: int) -> void:
+	print('chave rustica')
+	hp = new_hp
+	print(hp)
+	hpLabel.text = "vida: " + str(hp)
+
+
+func updateHP() -> void:
+	hp -= 1
+	hpLabel.text = "vida: " + str(hp)

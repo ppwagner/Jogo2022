@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 signal player_shooted(bullet, position, direction, name)
 
-var hp = 3
+export var hp = 10
 export var run_speed = 350
 export var jump_speed = -1000
 export var gravity = 2500
@@ -58,6 +58,7 @@ func _unhandled_input(event):
 
 
 func took_shoot():
+	get_tree().call_group("HUD", "updateHP")
 	hp -= 1
 	if hp == 0:
 		queue_free()

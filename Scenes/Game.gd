@@ -7,6 +7,8 @@ onready var player_bullet_manager = $Player
 onready var boss_bullet_manager = $Boss
 onready var bullet_manager = $BulletManager
 
+onready var teste = $HudCanvas
+
 # var currentScene = null
 
 func _ready() -> void:
@@ -15,7 +17,9 @@ func _ready() -> void:
 	# player = currentScene.get_node("Player")
 	player_bullet_manager.connect("player_shooted", bullet_manager, "handle_bullet_spawned")
 	boss_bullet_manager.connect("boss_shooted", bullet_manager, "handle_bullet_spawned")
-	
+
+	teste.setHP(player.hp)
+
 func _physics_process(_delta: float) -> void:
 	if sceneLimit == null:
 		return

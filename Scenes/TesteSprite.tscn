@@ -48,4 +48,27 @@ tile_data = PoolIntArray( 131072, 3, 0, 262144, 3, 0, 262145, 3, 0, 262146, 3, 0
 
 [node name="HudCanvas" parent="." instance=ExtResource( 3 )]
 
+[node name="ScoreLabel" parent="HudCanvas" index="0"]
+anchor_left = 0.416
+anchor_top = 0.047
+anchor_right = 0.543
+anchor_bottom = 0.109
+margin_left = -0.509644
+margin_top = 0.178974
+margin_right = -0.557678
+margin_bottom = -0.0210266
+
+[node name="gremio" type="Label" parent="HudCanvas"]
+anchor_left = 0.02
+anchor_top = 0.013
+anchor_right = 0.105
+anchor_bottom = 0.075
+margin_left = -0.480001
+margin_top = 0.2
+margin_right = 0.479996
+text = "Vida: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [editable path="HudCanvas"]
