@@ -10,21 +10,26 @@ export var gravity = 2500
 var velocity = Vector2()
 onready var sprite := $SimplePlayer
 onready var saida_do_tiro := $SaidaTiro
+onready var cajado := $Sprite
 
 export (PackedScene) var Bullet
+
+func set_position_staff(current_position, direction):
+	if direction == "right":
+		pass
+		
+	if direction == "left":
+		pass
 
 func get_input():
 	velocity.x = Input.get_action_strength("right")-Input.get_action_strength("left")
 	velocity.y = Input.get_action_strength("down")-Input.get_action_strength("up")
 
 	velocity *= run_speed
-	
-	if velocity.y > 0:
-		sprite.play("down")
-	elif velocity.y < 0:
-		sprite.play("up")
-	elif velocity.x > 0:
+
+	if velocity.x > 0:
 		sprite.play("right")
+		
 	elif velocity.x < 0:
 		sprite.play("left")
 	else:
@@ -54,7 +59,9 @@ func get_input_side():
 
 func _unhandled_input(event):
 	if event.is_action_pressed("shoot"):
+		cajado.rotation_degrees = 45
 		shoot()
+		# cajado.rotation_degrees = 0
 
 
 func took_shoot():

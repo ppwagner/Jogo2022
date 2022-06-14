@@ -32,7 +32,7 @@ drag_margin_bottom = 1.0
 editor_draw_drag_margin = true
 
 [node name="Boss" parent="." instance=ExtResource( 7 )]
-position = Vector2( 1901, 260 )
+position = Vector2( 1875, 97 )
 script = ExtResource( 8 )
 Bullet = ExtResource( 2 )
 RainBullet = ExtResource( 9 )

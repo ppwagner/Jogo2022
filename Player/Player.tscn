@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Player/SimplePlayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
+[ext_resource path="res://GFX/cajado.png" type="Texture" id=3]
+[ext_resource path="res://Player/Sprite_Staff.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 18, 30.5 )
@@ -19,3 +21,9 @@ shape = SubResource( 1 )
 
 [node name="SaidaTiro" type="Position2D" parent="."]
 position = Vector2( -1, 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 33, -9 )
+scale = Vector2( 2.05556, 1.83333 )
+texture = ExtResource( 3 )
+script = ExtResource( 4 )
