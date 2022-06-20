@@ -27,3 +27,7 @@ position = Vector2( 33, -9 )
 scale = Vector2( 2.05556, 1.83333 )
 texture = ExtResource( 3 )
 script = ExtResource( 4 )
+
+[node name="Cooldown_shoot" type="Timer" parent="."]
+wait_time = 0.7
+one_shot = true
