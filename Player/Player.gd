@@ -3,6 +3,8 @@ extends KinematicBody2D
 signal player_shooted(bullet, position, direction, name)
 
 export var hp = 10
+# export var old_hp = 10
+
 export var run_speed = 350
 export var jump_speed = -1000
 export var gravity = 2500
@@ -12,6 +14,7 @@ onready var sprite := $SimplePlayer
 onready var saida_do_tiro := $SaidaTiro
 onready var cajado := $Sprite
 onready var cooldown_shoot = $Cooldown_shoot
+onready var cooldown_life = $Cooldown_life
 
 var cur_dir = "right"
 
@@ -55,18 +58,22 @@ func get_input_side():
 		# Avisa aos integrantes do grupo "HUD" (no caso, apenas o HudCanvas)
 		# que o score deve ser alterado
 		get_tree().call_group("HUD", "updateScore")
-	
-	if velocity.x > 0:
-		sprite.play("right")
-		set_position_staff("right")
-		
-	elif velocity.x < 0:
-		sprite.play("left")
-		set_position_staff("left")
+
+	if cooldown_life.is_stopped():
+		if velocity.x > 0:
+			sprite.play("right")
+			set_position_staff("right")
+
+		elif velocity.x < 0:
+			sprite.play("left")
+			set_position_staff("left")
+
+		else:
+			sprite.stop()
+			sprite.frame = 0
 
 	else:
-		sprite.stop()
-		sprite.frame = 0
+		sprite.play("damage")
 
 
 func _unhandled_input(event):
@@ -75,10 +82,18 @@ func _unhandled_input(event):
 
 
 func took_shoot():
-	get_tree().call_group("HUD", "updateHP")
-	hp -= 1
-	if hp == 0:
-		queue_free()
+	if cooldown_life.is_stopped():
+		get_tree().call_group("HUD", "updateHP")
+		hp -= 1
+		if hp == 0:
+			queue_free()
+		cooldown_life.start()
+
+#func damage_animation():
+#	if old_hp != hp:
+#		sprite.play("damage")
+#		old_hp = hp
+
 
 func staff_animation():
 	if not cooldown_shoot.is_stopped():
@@ -109,3 +124,4 @@ func _physics_process(delta):
 	get_input_side()
 	velocity = move_and_slide(velocity, Vector2.UP)
 	staff_animation()
+	# damage_animation()
