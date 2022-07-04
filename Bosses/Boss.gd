@@ -21,7 +21,7 @@ export (float) var rotation_speed = 1.5
 onready var testess := $AnimatedSprite
 onready var saida_do_tiro := $SaidaTiro
 onready var cooldown_life := $Cooldown_life
-onready var cd_change_phase := $change_phase
+# onready var cd_change_phase := $Change_phase
 
 onready var saida_rain1 := $Rain_shoot1
 onready var saida_rain2 := $Rain_shoot2
@@ -68,10 +68,6 @@ func _on_Cooldown_shoot_timeout():
 	single_shoot()
 
 
-func _on_change_phase_timeout():
-	owner.get_child(0).global_position = Vector2(4367, 409)
-
-
 func took_shoot():
 	if cooldown_life.is_stopped():
 		#print("OI")
@@ -79,9 +75,8 @@ func took_shoot():
 		#testess.play("damage")
 		if hp == 0:
 			queue_free()
-			cd_change_phase.start()
-			get_tree().call_group("HUD", "setNotify", "Teleportando para proxima ase em 10 segundos...")
-			#owner.get_child(0).global_position = Vector2(4367, 409)
+			get_tree().call_group("HUD", "setNotify", "FASE 2")
+			owner.get_child(0).global_position = Vector2(4367, 409)
 
 		cooldown_life.start()
 
@@ -93,10 +88,10 @@ func took_shoot():
 func _ready():
 	var timer = get_node("Timer")
 	var cd_shoot = get_node("Cooldown_shoot")
-	var change_phase = get_node("change_phase")
+	# var change_phase = get_node("Change_phase")
 	timer.connect("timeout", self, "_on_Timer_timeout")
 	cd_shoot.connect("timeout", self, "_on_Cooldown_shoot_timeout")
-	change_phase.connect("timeout", self, "_on_change_phase_timeout")
+	# change_phase.connect("timeout", self, "_on_Change_phase_timeout")
 
 
 func _physics_process(delta):
