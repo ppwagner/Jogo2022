@@ -80,8 +80,8 @@ func took_shoot():
 		if hp == 0:
 			queue_free()
 			cd_change_phase.start()
-			get_tree().call_group("HUD", "setNotify", "Teleportando para proxima ase em 10 segundos...")
-			#owner.get_child(0).global_position = Vector2(4367, 409)
+			get_tree().call_group("HUD", "setNotify", "FASE 2")
+			owner.get_child(0).global_position = Vector2(-453, 1858)
 
 		cooldown_life.start()
 
