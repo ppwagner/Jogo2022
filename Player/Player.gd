@@ -9,6 +9,7 @@ export var run_speed = 350
 export var jump_speed = -1000
 export var gravity = 2500
 
+var alive := true
 var velocity = Vector2()
 onready var sprite := $SimplePlayer
 onready var saida_do_tiro := $SaidaTiro
@@ -53,6 +54,9 @@ func get_input_side():
 
 	velocity.x *= run_speed
 	
+	if Input.is_action_just_pressed("restart"):
+		get_tree().reload_current_scene()
+	
 	if is_on_floor() and Input.is_action_just_pressed("jump"):
 		velocity.y = jump_speed
 		# Avisa aos integrantes do grupo "HUD" (no caso, apenas o HudCanvas)
@@ -83,10 +87,14 @@ func _unhandled_input(event):
 
 func took_shoot():
 	if cooldown_life.is_stopped():
-		get_tree().call_group("HUD", "updateHP")
-		hp -= 1
+		if hp > 0:
+			hp -= 1
+			get_tree().call_group("HUD", "updateHP")
+
 		if hp == 0:
-			queue_free()
+			alive = false
+			get_tree().call_group("HUD", "death_trigger")
+
 		cooldown_life.start()
 
 #func damage_animation():
@@ -122,6 +130,7 @@ func shoot():
 func _physics_process(delta):
 	velocity.y += gravity * delta
 	get_input_side()
-	velocity = move_and_slide(velocity, Vector2.UP)
+	if alive == true:
+		velocity = move_and_slide(velocity, Vector2.UP)
 	staff_animation()
 	# damage_animation()

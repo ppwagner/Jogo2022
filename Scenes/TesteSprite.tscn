@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=2]
+[gd_scene load_steps=118 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Items/Bullet.tscn" type="PackedScene" id=2]
@@ -18,6 +18,8 @@
 [ext_resource path="res://Enemys/archer_canto_direito_superior.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Enemys/archer_canto_direito_superior_pequeno.tscn" type="PackedScene" id=17]
 [ext_resource path="res://MeuTema.tres" type="Theme" id=18]
+[ext_resource path="res://Enemys/Olho_do_mal.tscn" type="PackedScene" id=19]
+[ext_resource path="res://GFX/tiro_rain_exemplo.png" type="Texture" id=20]
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -917,6 +919,22 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 } ]
 0/z_index = 0
 
+[sub_resource type="TileSet" id=97]
+0/name = "tiro_rain_exemplo.png 0"
+0/texture = ExtResource( 20 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 32, 64, 32, 32 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
 [node name="Game" type="Node2D"]
 script = ExtResource( 5 )
 
@@ -962,19 +980,34 @@ theme = ExtResource( 18 )
 text = "Vida: 0"
 
 [node name="notify" type="Label" parent="HudCanvas"]
-anchor_left = 0.426
-anchor_top = 0.438
-anchor_right = 0.66
-anchor_bottom = 0.627
-margin_left = -0.22403
+anchor_left = 0.424
+anchor_top = 0.538
+anchor_right = 0.821
+anchor_bottom = 0.818
+margin_left = -0.176025
 margin_top = 0.199982
-margin_right = 0.159973
-margin_bottom = -0.200012
+margin_right = 0.295959
+margin_bottom = 0.199982
 theme = ExtResource( 18 )
 
 [node name="Cooldown_notify" type="Timer" parent="HudCanvas"]
 wait_time = 3.0
 autostart = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HudCanvas"]
+anchor_left = 0.35
+anchor_top = 0.448
+anchor_right = 0.862
+anchor_bottom = 0.735
+margin_left = -0.400024
+margin_top = 0.199982
+margin_right = 0.311951
+theme = ExtResource( 18 )
+bbcode_enabled = true
+bbcode_text = "[rainbow]VOCÊ MORREU :([/rainbow]
+Pressione R para reiniciar"
+text = "VOCÊ MORREU :(
+Pressione R para reiniciar"
 
 [node name="Pedra TM" type="TileMap" parent="."]
 position = Vector2( -3624, -591 )
@@ -1359,6 +1392,15 @@ position = Vector2( 2799, 1690 )
 
 [node name="Moeda100" parent="." instance=ExtResource( 13 )]
 position = Vector2( 2590, 1559 )
+[node name="Olho_do_mal" parent="." instance=ExtResource( 19 )]
+position = Vector2( 412, -34 )
+
+[node name="Lava" type="TileMap" parent="."]
+tile_set = SubResource( 97 )
+cell_size = Vector2( 16, 16 )
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+format = 1
+tile_data = PoolIntArray( 1179681, 0, 0 )
 
 [connection signal="timeout" from="HudCanvas/Cooldown_notify" to="HudCanvas" method="_on_Cooldown_notify_timeout"]
 

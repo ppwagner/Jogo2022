@@ -1,4 +1,4 @@
-xtends Sprite
+extends Sprite
 
 
 # Declare member variables here. Examples:
