@@ -4,7 +4,7 @@ signal enemy_shooted(bullet, position, direction, name)
 
 var velocity = Vector2()
 
-var hp = 5
+var hp = 1
 export var gravity = 2500
 export (int) var speed = 7
 

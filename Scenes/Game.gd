@@ -6,7 +6,7 @@ var player : KinematicBody2D
 onready var player_bullet_manager = $Mago
 onready var boss_bullet_manager = $Boss
 onready var bullet_manager = $BulletManager
-onready var archer1_bullet_manager = $Archer1
+onready var archer1_bullet_manager = $Archer1_inicio_dir_inf
 
 onready var teste = $HudCanvas
 
