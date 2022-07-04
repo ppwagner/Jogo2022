@@ -57,7 +57,7 @@ func get_input_side():
 		velocity.y = jump_speed
 		# Avisa aos integrantes do grupo "HUD" (no caso, apenas o HudCanvas)
 		# que o score deve ser alterado
-		get_tree().call_group("HUD", "updateScore")
+		#get_tree().call_group("HUD", "updateScore")
 
 	if cooldown_life.is_stopped():
 		if velocity.x > 0:

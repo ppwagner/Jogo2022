@@ -28,16 +28,16 @@ position = Vector2( 0, -70 )
 shape = SubResource( 1 )
 
 [node name="Rain_shoot1" type="Position2D" parent="."]
-position = Vector2( -449, -268 )
+position = Vector2( -449, -442 )
 
 [node name="Rain_shoot2" type="Position2D" parent="."]
-position = Vector2( -179, -268 )
+position = Vector2( -179, -442 )
 
 [node name="Rain_shoot3" type="Position2D" parent="."]
-position = Vector2( 164, -267 )
+position = Vector2( 164, -442 )
 
 [node name="Rain_shoot4" type="Position2D" parent="."]
-position = Vector2( 453, -267 )
+position = Vector2( 453, -442 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0

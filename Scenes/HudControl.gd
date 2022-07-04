@@ -20,4 +20,5 @@ func setHP(new_hp: int) -> void:
 
 func updateHP() -> void:
 	hp -= 1
+	hpLabel.draw_texture("cajado.png")
 	hpLabel.text = "vida: " + str(hp)

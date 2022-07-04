@@ -27,7 +27,8 @@ func _on_Area2D_body_entered(body: Node):
 
 
 func _on_Area2D_area_entered(area: Area2D):
-	if who != area.who:
+	# print("who: ", area.name)
+	if "who" in area and who != area.who:
 		area.queue_free()
 		queue_free()
 
