@@ -18,7 +18,7 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 
 func _on_Area2D_body_entered(body: Node):
-	print(self, ' --> ', body)
+	# print(self, ' --> ', body)
 	if who != body:
 		if body.has_method("took_shoot"):
 			body.took_shoot()

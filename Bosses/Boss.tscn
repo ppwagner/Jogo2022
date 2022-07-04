@@ -1,9 +1,19 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://GFX/boss_exemplo.png" type="Texture" id=1]
+[ext_resource path="res://GFX/arvore_damage.png" type="Texture" id=2]
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 16, 17 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
+"frames": [ SubResource( 4 ) ],
+"loop": true,
+"name": "damage",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
 "name": "Default",
@@ -28,17 +38,27 @@ position = Vector2( 0, -70 )
 shape = SubResource( 1 )
 
 [node name="Rain_shoot1" type="Position2D" parent="."]
-position = Vector2( -449, -442 )
+position = Vector2( -234, -254 )
 
 [node name="Rain_shoot2" type="Position2D" parent="."]
-position = Vector2( -179, -442 )
+position = Vector2( -57, -441 )
 
 [node name="Rain_shoot3" type="Position2D" parent="."]
-position = Vector2( 164, -442 )
+position = Vector2( 229, -442 )
 
 [node name="Rain_shoot4" type="Position2D" parent="."]
 position = Vector2( 453, -442 )
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
+[node name="Cooldown_shoot" type="Timer" parent="."]
 autostart = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="Cooldown_life" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="change_phase" type="Timer" parent="."]
+wait_time = 10.0

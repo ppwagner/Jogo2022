@@ -6,7 +6,8 @@ var player : KinematicBody2D
 onready var player_bullet_manager = $Mago
 onready var boss_bullet_manager = $Boss
 onready var bullet_manager = $BulletManager
-onready var archer1_bullet_manager = $Archer1_inicio_dir_inf
+# onready var archer1_bullet_manager = $Archer1_inicio_dir_inf
+
 
 onready var teste = $HudCanvas
 
@@ -14,11 +15,12 @@ onready var teste = $HudCanvas
 
 func _ready() -> void:
 	player = get_child(0)
+	# print("archer game", archer1_bullet_manager)
 	# sceneLimit = currentScene.get_node("SceneLimit")
 	# player = currentScene.get_node("Player")
 	player_bullet_manager.connect("player_shooted", bullet_manager, "handle_bullet_spawned")
 	boss_bullet_manager.connect("boss_shooted", bullet_manager, "handle_bullet_spawned")
-	archer1_bullet_manager.connect("enemy_shooted", bullet_manager, "handle_bullet_spawned")
+	# archer1_bullet_manager.connect("enemy_shooted", bullet_manager, "handle_bullet_spawned")
 
 	teste.setHP(player.hp)
 

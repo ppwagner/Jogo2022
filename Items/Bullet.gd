@@ -18,7 +18,7 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 
 func _on_Area2D_body_entered(body: Node):
-	print(self, ' --> ', body)
+	# print(self, ' --> ', body)
 	if who != body:
 		if body.has_method("took_shoot"):
 			body.took_shoot()
@@ -27,8 +27,9 @@ func _on_Area2D_body_entered(body: Node):
 
 
 func _on_Area2D_area_entered(area: Area2D):
-	# print("who: ", area.name)
 	if "who" in area and who != area.who:
-		area.queue_free()
+		if area.name != "Meteoro":
+			area.queue_free()
+
 		queue_free()
 

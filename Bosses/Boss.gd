@@ -13,12 +13,15 @@ enum State {
 	 RAIN_SHOOT
 }
 
-var hp = 50
+var hp = 1
 export var gravity = 2500
 export (int) var speed = 200
 export (float) var rotation_speed = 1.5
 
+onready var testess := $AnimatedSprite
 onready var saida_do_tiro := $SaidaTiro
+onready var cooldown_life := $Cooldown_life
+onready var cd_change_phase := $change_phase
 
 onready var saida_rain1 := $Rain_shoot1
 onready var saida_rain2 := $Rain_shoot2
@@ -35,6 +38,13 @@ func shoot():
 	var direcao_mouse = saida_do_tiro.position.direction_to(dir_tiro).normalized()
 	emit_signal("boss_shooted", bullet_instance, saida_do_tiro.global_position, direcao_mouse, self)
 	dir_tiro = Vector2(speed, 0).rotated(rotation_dir)
+
+
+func single_shoot():
+	var bullet_instance = Bullet.instance()
+	var alvo_player = owner.get_child(0).global_position
+	var direcao_mouse = saida_do_tiro.global_position.direction_to(alvo_player).normalized()
+	emit_signal("boss_shooted", bullet_instance, saida_do_tiro.global_position, direcao_mouse, self)
 
 
 func rain_shoot():
@@ -54,19 +64,48 @@ func _on_Timer_timeout():
 		rain_shoot()
 
 
+func _on_Cooldown_shoot_timeout():
+	single_shoot()
+
+
+func _on_change_phase_timeout():
+	owner.get_child(0).global_position = Vector2(4367, 409)
+
+
 func took_shoot():
-	hp -= 1
-	if hp == 0:
-		queue_free()
+	if cooldown_life.is_stopped():
+		#print("OI")
+		hp -= 1
+		#testess.play("damage")
+		if hp == 0:
+			queue_free()
+			cd_change_phase.start()
+			get_tree().call_group("HUD", "setNotify", "Teleportando para proxima ase em 10 segundos...")
+			#owner.get_child(0).global_position = Vector2(4367, 409)
+
+		cooldown_life.start()
+
+	#else:
+	#	print("tchau")
+	#	testess.play("Default")
 
 
 func _ready():
 	var timer = get_node("Timer")
+	var cd_shoot = get_node("Cooldown_shoot")
+	var change_phase = get_node("change_phase")
 	timer.connect("timeout", self, "_on_Timer_timeout")
+	cd_shoot.connect("timeout", self, "_on_Cooldown_shoot_timeout")
+	change_phase.connect("timeout", self, "_on_change_phase_timeout")
 
 
 func _physics_process(delta):
 	velocity.y += gravity * delta
 	velocity = move_and_slide(velocity, Vector2.UP)
 	rotation_dir += 0.1
+
+	if cooldown_life.is_stopped():
+		testess.play("Default")
+	else:
+		testess.play("damage")
 

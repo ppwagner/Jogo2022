@@ -2,6 +2,8 @@ extends CanvasLayer
 
 onready var scoreLabel := $ScoreLabel
 onready var hpLabel := $gremio
+onready var notify := $notify
+onready var show_time := $Cooldown_notify
 
 onready var score := 0
 onready var hp := 0
@@ -21,3 +23,17 @@ func setHP(new_hp: int) -> void:
 func updateHP() -> void:
 	hp -= 1
 	hpLabel.text = "vida: " + str(hp)
+
+
+func _ready():
+	notify.text = "FASE 1"
+
+
+func setNotify(new_text: String) -> void:
+	notify.text = new_text
+	notify.visible = true
+	show_time.start()
+
+
+func _on_Cooldown_notify_timeout():
+	notify.visible = false
