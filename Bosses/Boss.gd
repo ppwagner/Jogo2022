@@ -13,7 +13,7 @@ enum State {
 	 RAIN_SHOOT
 }
 
-var hp = 1
+var hp = 20
 export var gravity = 2500
 export (int) var speed = 200
 export (float) var rotation_speed = 1.5
