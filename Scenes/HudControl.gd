@@ -16,9 +16,7 @@ func updateScore() -> void:
 
 
 func setHP(new_hp: int) -> void:
-	print('chave rustica')
 	hp = new_hp
-	print(hp)
 	hpLabel.text = "vida: " + str(hp)
 
 

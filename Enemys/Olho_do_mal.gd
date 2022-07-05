@@ -7,7 +7,6 @@ var velocity = Vector2()
 var hp = 3
 var start_hp = hp
 
-# export var gravity = 2500
 export (int) var speed = 7
 
 var player : KinematicBody2D = null
@@ -70,9 +69,6 @@ func took_shoot():
 
 
 func _physics_process(_delta):
-	# print(velocity)
-	# print(abs(velocity.x))
-	# velocity.y += gravity * delta
 	velocity = move_and_slide(velocity, Vector2.ZERO)
 	walk()
 	
@@ -85,4 +81,3 @@ func _physics_process(_delta):
 func _on_Area2D_body_entered(body):
 	if body.name == "Mago" and player == null:
 		player = body
-

@@ -21,7 +21,6 @@ export (float) var rotation_speed = 1.5
 onready var testess := $AnimatedSprite
 onready var saida_do_tiro := $SaidaTiro
 onready var cooldown_life := $Cooldown_life
-# onready var cd_change_phase := $Change_phase
 
 onready var saida_rain1 := $Rain_shoot1
 onready var saida_rain2 := $Rain_shoot2
@@ -70,9 +69,7 @@ func _on_Cooldown_shoot_timeout():
 
 func took_shoot():
 	if cooldown_life.is_stopped():
-		#print("OI")
 		hp -= 1
-		#testess.play("damage")
 		if hp == 0:
 			queue_free()
 			get_tree().call_group("HUD", "setNotify", "FASE 2")
@@ -80,18 +77,12 @@ func took_shoot():
 
 		cooldown_life.start()
 
-	#else:
-	#	print("tchau")
-	#	testess.play("Default")
-
 
 func _ready():
 	var timer = get_node("Timer")
 	var cd_shoot = get_node("Cooldown_shoot")
-	# var change_phase = get_node("Change_phase")
 	timer.connect("timeout", self, "_on_Timer_timeout")
 	cd_shoot.connect("timeout", self, "_on_Cooldown_shoot_timeout")
-	# change_phase.connect("timeout", self, "_on_Change_phase_timeout")
 
 
 func _physics_process(delta):
@@ -103,4 +94,3 @@ func _physics_process(delta):
 		testess.play("Default")
 	else:
 		testess.play("damage")
-
