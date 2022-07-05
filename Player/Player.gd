@@ -2,8 +2,7 @@ extends KinematicBody2D
 
 signal player_shooted(bullet, position, direction, name)
 
-export var hp = 200000
-# export var old_hp = 10
+export var hp = 30
 
 export var run_speed = 350
 export var jump_speed = -1000

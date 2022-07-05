@@ -4,10 +4,11 @@ onready var scoreLabel := $ScoreLabel
 onready var hpLabel := $gremio
 onready var notify := $notify
 onready var show_time := $Cooldown_notify
-onready var death_notiy := $RichTextLabel
+onready var death_notify := $RichTextLabel
+onready var win_notify := $RichTextLabel2
 
-onready var score := 0
 onready var hp := 0
+onready var score := 0
 
 func updateScore() -> void:
 	score += 1
@@ -28,7 +29,9 @@ func updateHP() -> void:
 
 func _ready():
 	notify.text = "FASE 1"
-	death_notiy.visible = false
+	win_notify.visible = false
+	death_notify.visible = false
+
 
 func setNotify(new_text: String) -> void:
 	notify.text = new_text
@@ -37,7 +40,11 @@ func setNotify(new_text: String) -> void:
 
 
 func death_trigger():
-	death_notiy.visible = true
+	death_notify.visible = true
+
+
+func win_trigger():
+	win_notify.visible = true
 
 
 func _on_Cooldown_notify_timeout():

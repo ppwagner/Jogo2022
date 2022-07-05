@@ -2,8 +2,8 @@ extends Area2D
 
 
 var velocity = Vector2()
-# var gravity = 2500
 var player : KinematicBody2D = null
+
 
 func _on_Moeda_body_entered(body):
 	if body.name == "Mago":
